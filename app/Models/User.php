@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Post;
+use App\Models\Category;
 
 class User extends Authenticatable
 {
@@ -58,4 +60,13 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // Relacion uno a mucho
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+    public function adminlte_image(){
+        return 'https://picsum.photos/300/300';
+    }
 }
